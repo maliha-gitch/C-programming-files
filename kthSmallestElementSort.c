@@ -1,0 +1,54 @@
+#include<stdio.h>
+void insertion_sort(int arr[], int n)
+{
+    for(int i=1; i<n; i++)
+    {
+        int key = arr[i]; /// key / first element of the unsorted portion of array
+                          /// which we will insert in the correct position of sorted portio
+         int j = i-1; /// index of the element from where we started comparing
+
+        /// move elements of the sorted portion that are greater than the key,
+        /// one position ahead of their current position
+
+        while( j >= 0 && arr[j] > key) /// j = -1 --> arr[-1+1] = key
+                                       /// j = 0 and arr[0] = 5 < 6(key)--> arr[0+1] = key;
+        {
+            arr[j+1] = arr[j]; /// move element one position ahead
+
+            j = j - 1;  /// go to the next element with which we compare
+        }
+        arr[j+1] = key; ///place the key in its correct position(empty space after the element smaller than the key)
+    }
+}
+
+void print_array(int arr[], int n,int position)
+{
+    for(int i=0;i<n-1;i++){
+        if(i==position-1)
+
+        printf("%d ", arr[i]);
+    }
+
+
+}
+
+int main()
+{
+    //int arr[5] = {12,11, 13, 5, 6};
+
+    printf("Enter size of the array: ");
+    int n;
+    scanf("%d", &n);
+
+    int arr[n];
+    for(int i=0; i<n; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    insertion_sort(arr, n);
+
+    printf("Kth smallest Element: ");
+    print_array(arr, n,2);
+
+}
